@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link href="{% static 'static/css/style.css' %}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header data-aos="fade-down">
+        <div class="header-container">
+            <div class="name-user"> <h1>{{ user }}</h1></div>
+            <h1 class="title-note">Notes</h1>
+            <div class="buttons">
+                {% if user.is_authenticated %}
+               <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                   
+                    <button>logout</button>
+                </form> 
+                {% else %}
+                <a href="{% url 'login'%}">login</a>
+            {% endif %}
+            </div>
+        </div>
+    </header>
+    <div class="notes-container">
+        <a class="add-button" href="{% url 'add_note'%}">Add Note</a>
+        <div class="notes">
+            {% for x in notes %}
+            <div class="note" data-aos="fade-up">
+                <h1>{{ x.title }}</h1>
+                <p>{{x.content}}</p>
+                <div class="note-buttons">
+                    <a class="edit-button" href="{% url 'note' x.pk %}">Edit</a>
+                    <a class="delete-button" href="{% url 'delete' x.pk %}">Delete</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+   
+   
+</body>
+</html>

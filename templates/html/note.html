@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="{% static 'static/css/style.css' %}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header data-aos="fade-down">
+        <div class="header-container">
+            <div class="name-user"> <h1>{{ user }}</h1></div>
+            <h1 class="title-note">Notes</h1>
+            <div class="buttons">
+                {% if user.is_authenticated %}
+               <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                   
+                    <button>logout</button>
+                </form> 
+                {% else %}
+                <a href="{% url 'login'%}">login</a>
+            {% endif %}
+            </div>
+        </div>
+    </header>
+    <form class="add-form" method="post">
+        {% csrf_token %}
+    <div class="add-note">
+        <h1>title</h1><input type="text" name="title" class="title-note-add" value="{{note.title}}">
+        
+    </div>
+    <div class="add-note">
+    <h1>content</h1><textarea  name="content" class="content-note-add">{{note.content}}</textarea>
+    </div>
+    <input type="submit" value="save" class="button-save">
+    </form>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>signin</title>
+    <link rel="stylesheet" href="{% static 'static/css/style2.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="wrapper">
+       <div class="title-text">
+          <div class="title login">
+            signin 
+          </div>
+       </div>
+       <div class="form-container">
+         
+          
+            
+            
+          
+          <div class="form-inner">
+             <form method="post" class="login">
+               {% csrf_token %}
+               <div class="field">
+                  <label  class="slide ">user name</label>
+              {{form.username}}
+               </div>
+               <br>
+               <div class="field">
+                  <label  class="slide ">passwor2</label>
+               {{form.password1}}
+               </div>
+               <br>
+               <div class="field">
+                  <label  class="slide ">password2</label>
+               {{form.password2}}
+               </div>
+               <br>
+               <br>
+               
+               <br>
+               
+               <div class="field btn">
+                  <div class="btn-layer"></div>
+                  <input type="submit" value="signin">
+               </div>
+               <br>
+             </form>
+             
+          </div>
+       </div>
+    </div>
+    <script src="style.js"></script>
+  </body>
+</html>
